@@ -1,0 +1,25 @@
+.welcome-screen{
+    display: flex;
+    height: 100%;
+    align-items: center;
+.container{
+    text-align: center;
+    .welcome-logo{
+        margin-bottom: 50px;
+        @media (max-width: 576px) {
+            margin-bottom: 10px;
+            width: 160px;
+        }
+    }
+    
+    .welcome-desc{
+        margin-top: 40px;
+        font-size: 20px;
+        color: #fff;
+        font-weight: 200;
+        max-width: 1107px;
+        margin: auto;
+        line-height: 160%;
+    }
+
+}}
