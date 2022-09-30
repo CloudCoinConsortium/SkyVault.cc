@@ -1,0 +1,44 @@
+<div class="debitCardWrapper">
+  <ng-container *ngIf="showNormal">
+    <h2 class="pageHeading">Drop Your Pass Key Here</h2>
+    <div class="gap20"></div>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="dropDebitcardWrapOuter">
+                <div class="dropDebitcardWrap" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+                    <ngx-dropzone-label>
+                        <div>
+                            <img src="assets/images/debit-card_drop.svg" alt="drop icon" class="dropIcon">
+                            <span class="dropLabel">Drop image here</span>
+                        </div>
+                    </ngx-dropzone-label>
+                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [multiple]="false" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label></ngx-dropzone-label>
+                    </ngx-dropzone-image-preview>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="gap30"></div>
+    <div style="text-align:center;">
+        <button class="buttonCustome">SUBMIT</button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="showError">
+    <ng-lottie height="100px" [options]="errorOptions" (animationCreated)="animationCreated($event)"></ng-lottie>
+    <div class="errorMsg" style="color:#ffffff;margin-bottom: 10px">{{errorMessage}}</div>
+    <div class="text-center">
+      <button class="buttonCustome" (click)="hideErrorMessage()">
+        Back
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="showLoader">
+    <div class="text-center">
+      <ng-lottie  height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+      <span class="errorMsg" style="color:#ffffff">{{ loadingMessage }}</span>
+    </div>
+  </ng-container>
+</div>

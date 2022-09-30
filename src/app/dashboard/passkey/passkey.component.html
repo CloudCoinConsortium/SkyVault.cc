@@ -1,0 +1,41 @@
+<div class="pageWrapper">
+  <div class="sectionWrapper">
+    <ng-container *ngIf="showNormal">
+      <h2 class="pageHeading">Pass Key</h2>
+      <div class="cardOne passkeyWrap">
+        <div class="row">
+          <div class="col-md-12 offset-md-3">
+            <div class="row cardUtlRow">
+              <div class="col-md-6">
+                <img [src]="cardImage" class="cardImg">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 offset-md-1 text-center">
+          <button class="buttonCustome" style="margin-top: 30px" (click)="downloadImage()">
+            <fa-icon icon="cloud-download-alt"></fa-icon> &nbsp;
+            Download SkyVault Pass Key
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="showError">
+      <ng-lottie height="100px" [options]="errorOptions" (animationCreated)="animationCreated($event)"></ng-lottie>
+      <div class="errorMsg" style="color:#ffffff;margin-bottom: 10px">{{errorMessage}}</div>
+      <div class="text-center">
+        <button class="buttonCustome" (click)="hideErrorMessage()">
+          Back
+        </button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="showLoader">
+      <div class="text-center">
+        <ng-lottie  height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+        <span class="errorMsg" style="color:#ffffff">{{loadingMessage}}</span>
+      </div>
+    </ng-container>
+  </div>
+</div>

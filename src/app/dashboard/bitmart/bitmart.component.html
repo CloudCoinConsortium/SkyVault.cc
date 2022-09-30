@@ -1,0 +1,59 @@
+<div class="pageWrapper">
+  <div class="sectionWrapper">
+    <ng-container *ngIf="showNormal">
+      <div class="bitmartWrap">
+        <h2 class="sectionTitle">Send CloudCoins to BitMart</h2>
+        <p class="sectionContent">This function sends CloudCoins to BitMart and then tells them that you have sent the funds. They then can check to see if the funds have arrived and credit your account automatically.
+          <!-- <br><span class="alert-send-msg"><fa-icon icon="exclamation-circle"></fa-icon> Please send only 16000 coins maximum at a time</span> -->
+        </p>
+        <div class="bitmartForm">
+          <div class="row">
+            <div class="col-md-12">
+              <label class="label-input-form" *ngIf="opinions>1"
+                [ngStyle]="{'color':(lowestUnsync>5)?'#FF7777':'#FFF'}"
+                tooltip="{{balanceBreakup}}"
+                >
+                <fa-icon icon="exclamation-circle"></fa-icon> Amount (Balance: {{balanceString}} CC)
+                <button class="syncInLabelIcon" (click)="syncAccount()" *ngIf="lowestUnsync>5"><img src="assets/images/sync.svg" alt="syncIcon"></button>
+              </label>
+
+
+              <label class="label-input-form" *ngIf="opinions===1 || opinions===0" >Amount (Balance: {{balanceString}} CC)</label>
+              <input type="number" class="input-form" placeholder="XX" name="amount" [(ngModel)]="amount" (keyup)="onAmountChange()">
+            </div>
+
+            <div class="col-md-12">
+              <div class="button-wrapper">
+                <button class="buttonCustome" (click)="payment()">SEND PAYMENT AND NOTIFY BITMART</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+
+    <ng-container *ngIf="showError">
+      <ng-lottie height="100px" [options]="errorOptions" (animationCreated)="animationCreated($event)"></ng-lottie>
+      <div class="errorMsg" style="color:#ffffff;margin-bottom: 10px">{{errorMessage}}</div>
+      <div class="text-center">
+        <button class="buttonCustome" (click)="hideErrorMessage()">
+          Back
+        </button>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="showLoader">
+      <div class="text-center">
+        <ng-lottie  height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+        <span style="color:#ffffff">{{loadingMessage}}</span>
+      </div>
+    </ng-container>
+
+    <div class="text-center subInnerHeader" *ngIf="complete">
+      <div class="gap20"></div>
+      <img src="assets/images/check-white.svg" alt="paymet complete" class="resultIcon">
+      <div [innerHTML]="completeMessage"></div>
+    </div>
+  </div>
+</div>

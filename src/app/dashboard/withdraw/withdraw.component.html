@@ -1,0 +1,52 @@
+<div class="pageWrapper">
+  <div class="sectionWrapper">
+    <ng-container *ngIf="showNormal">
+      <div class="widthdrawWrap">
+        <h2 class="sectionTitle">Enter Amount To Withdraw</h2>
+        <div class="withdrawForm">
+          <div class="row">
+            <div class="col-md-12">
+              <input placeholder="XX" type="number" class="input-form" [(ngModel)]="amount" (keyup)="onAmountChange()">
+            </div>
+            <div class="col-md-12 disclaimer" *ngIf="!doRecord">
+              <span><fa-icon [icon]="faInfoCircle"></fa-icon> This transacton will not be recorded. You can record this transaction by changing the setting in Statements</span>
+            </div>
+            <div class="gap10"></div>
+            <div class="col-md-12">
+              <div class="button-wrapper">
+                <button class="buttonCustome" (click)="withdraw()">WITHDRAW</button>
+              </div>
+              <!-- <div>
+                <a href="javascript:;"><img [src]="cardImageTest" width="90%"/></a>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="showError">
+      <ng-lottie height="100px" [options]="errorOptions" (animationCreated)="animationCreated($event)"></ng-lottie>
+      <div class="errorMsg" style="color:#ffffff;margin-bottom: 10px">{{errorMessage}}</div>
+      <div class="text-center">
+        <button class="buttonCustome" (click)="hideErrorMessage()">
+          Back
+        </button>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="showLoader">
+      <div class="text-center subInnerHeader">
+        <ng-lottie height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+        <span class="errorMsg" style="color:#ffffff">{{ progressMessage }}</span>
+      </div>
+    </ng-container>
+
+    <div class="text-center subInnerHeader" *ngIf="complete">
+      <div class="gap10"></div>
+      <div [innerHTML]="completeMessage"></div>
+      <div class="gap20"></div>
+      <button class="buttonCustome"  routerLink="/balance"> <img src="assets/images/balance-wallet.svg" alt="icon" class="walletIcon">  Check Balance</button>
+    </div>
+  </div>
+</div>

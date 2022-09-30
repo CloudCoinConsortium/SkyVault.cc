@@ -1,0 +1,86 @@
+<div class="register-container">
+  <div class="container">
+    <ng-container *ngIf="showNormal">
+        <p class="pageHeading">Get Your SkyVault</p>
+        <div class="register-credentials-inner">
+          <div class="row">
+            <div class="floatLbl">
+              <label class="label-input-form" for="sv-add">SkyVault Address (Letters and Numbers Only)
+
+                <div class="customTooltipWrap">
+                  <img src="assets/images/info_circle.svg" alt="" class="labelInfoIcon">
+                  <div class="tooltipDescWrap">
+                    <span>
+                      <ul>
+                        <!-- <li>Choose a username followed by ".skyvault.cc".</li> -->
+                        <li>First character must be a number or a letter.</li>
+                        <li>Minus signs are ok. The last character must not be a minus sign.</li>
+                        <li>Minimum length is 2 characters. Max length is 63 characters.</li>
+                        <li>You can see the IP address of your SkyVault on the back of your SkyVault Pass Key that you will receive after completing this form.</li>
+                      </ul>
+                    </span>
+                  </div>
+                </div>
+
+              </label>
+              <input #autofocus placeholder="username" type="text" class="input-form" name="wallet" [(ngModel)]="wallet">
+              <span class="domainName">.skyvault.cc</span>
+            </div>
+          </div>
+        </div>
+        <div class="gap20"></div>
+        <div style="text-align: center;">
+          <button class="buttonCustome" (click)="register()">Get Skyvault</button>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="showError">
+      <ng-lottie height="100px" [options]="errorOptions" (animationCreated)="animationCreated($event)"></ng-lottie>
+      <div class="errorMsg">{{errorMessage}}</div>
+      <div class="text-center">
+        <button class="buttonCustome" (click)="hideErrorMessage()">
+          Back
+        </button>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="showLoader">
+      <div class="text-center">
+        <ng-lottie height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+        <span style="color:#ffffff"> {{progressMessage}}</span>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="complete">
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="text-center">
+            <img src="assets/images/check.svg" alt="check" class="checkCircleIcon">
+            <span class="subInnerHeader">{{completeMessage}}</span>
+          </div>
+          <div class="row cardUtlRow">
+            <div class="col-md-6">
+              <a href="javascript:;" (click)="downloadImage()"><img [src]="cardImage" class="cardImg"></a>
+            </div>
+            <div class="col-md-6">
+              <p class="textWhite">You can log in to your SkyVault account by -</p>
+              <ul class="cardLogUtility">
+                <li>Uploading this card (Drop Pass Key)</li>
+                <li>Manually typing in Pass Key details</li>
+              </ul>
+              <button *ngIf="!showLogin" class="buttonCustome" style="margin-top: 10px" (click)="downloadImage()">
+                <fa-icon icon="cloud-download-alt"></fa-icon> &nbsp;
+                Download Your SkyVault Pass Key
+              </button>
+
+              <button *ngIf="showLogin" class="buttonCustome" style="margin-top: 10px" (click)="login()">
+                Log In Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+</div>

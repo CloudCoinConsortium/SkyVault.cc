@@ -1,0 +1,42 @@
+.cardUtlRow {
+  margin-top: 10px;
+}
+
+.cardImg {
+  width: 100%;
+  @media (max-width: 576px) {
+    margin-bottom: 20px;
+  }
+}
+
+.pageWrapper{
+  .sectionWrapper{
+      .cardOne{
+          width: 100%;
+          height: 100%;
+          background-color: #272A4B;
+          border-radius: 30px;
+          padding: 15px;
+          // display: flex;
+          justify-content: center;
+          // flex-direction: column;
+          text-align: center !important;
+          img{
+              // height: 100px;
+              margin: 0 auto;
+              margin-bottom: 15px;
+              justify-content: center;
+              text-align: center;
+          }
+
+      }
+      .passkeyWrap{
+          img{
+              height: 500px;
+              @media (max-width: 576px) {
+                height: 350px;
+              }
+          }
+      }
+  }
+}
